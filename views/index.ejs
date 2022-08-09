@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kdrama Tracker</title>
+    <!-- Stylesheet link -->
+    <link rel="stylesheet" href="/style.css">
+
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+</head>
+
+<body>
+    <section class="todo-container">
+        <h1>Kdrama Tracker</h1>
+        <!-- Submission forms -->
+        <section class="todo">
+            <form action="/" method="POST" class="todo-header">
+                <input type="text" name="title" value="title">
+                <input type="text" name="completed" value="completed?">
+                <input type="text" name="episodes" value="Number of Episodes Watched">
+                <input type="text" name="totalEpisodes" value="Total Episodes">
+                <textarea rows="6" cols="45" name="review">Review</textarea>
+                <button type="submit"><span class="fas fa-plus">Add to List</span></button>
+            </form>
+            <!-- Show list of items -->
+            <ul class="categories">
+                <li>
+                    <div class="category-item" id="one">Title</div>
+                    <div class="category-item" id="two">Completed?</div>
+                    <div class="category-item" id="three">Episodes <br> Watched</div>
+                    <div class="category-item" id="four">Total <br>Episodes</div>
+                    <div class="category-item" id="five">Rating</div>
+                </li>
+            </ul>
+            <ul class="todo-list">
+                <% ToDoTask.forEach(task => {%>
+                <li class="todo-list-item">
+                    <div class="todo-list-item-title">
+                        <%= task.title %>
+                    </div>
+                    <div class="todo-list-item-completed">
+                        <%= task.completed %>
+                    </div>
+                    <div class="todo-list-item-episodes">
+                        <%= task.numberOfEpsWatched %>
+                    </div>
+                    <div class="todo-list-item-totalEpisodes">
+                        <%= task.totalEps %>
+                    </div>
+                    <div class="todo-list-item-review">
+                        <%= task.review %>
+                    </div>
+                    <a href="/edit/<%=task._id %>" class="edit"><span class="fas fa-edit"></span></a>
+                    <a href="/remove/<%=task._id %>" class="remove"><span class="fas fa-times"></span></a>
+                </li>
+               <% }) %>
+            </ul>
+
+        </section>
+
+    </section>
+    
+</body>
+</html>

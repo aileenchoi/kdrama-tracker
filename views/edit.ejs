@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo App</title>
+    <!-- Stylesheet link -->
+    <link rel="stylesheet" href="/style.css">
+
+    <!-- Google font -->
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+</head>
+
+<body>
+    <section class="todo-container">
+        <h1>Edit List Item</h1>
+        <section class="todo">
+            <!-- Show list of items -->
+
+
+            <ul class="todo-list">
+                <% ToDoTask.forEach(task => { %>
+                    <% if(task._id == idTask){ %>
+                        <li class="todo-list-item">
+                            <form action="/edit/<%= task._id %>" method="POST">
+                                <form action="/" method="POST" class="todo-header">
+                                    <input type="text" name="title" value="<%=task.title %>">
+                                    <textarea rows="6" cols="45" name="completed" value = "completed?"><%=task.completed %></textarea>
+                                    <textarea rows="6" cols="45" name="episodes" value = "completed?"><%=task.numberOfEpsWatched %></textarea>
+                                    <textarea rows="6" cols="45" name="totalEpisodes" value = "completed?"><%=task.totalEps %></textarea>
+                                    <textarea rows="6" cols="45" name="review" value = "completed?"><%=task.review %></textarea>
+                                    <button type="submit" class="confirm">Confirm</button>
+                                    <a href="/" class="cancel">Cancel</a>
+                            </form>
+                        </li>
+
+                        
+                        <% } else { %>
+                                <li class="todo-list-item">
+                                    <div class="todo-list-item-title">
+                                        <%= task.title %>
+                                    </div>
+                                    <div class="todo-list-item-content">
+                                        <%= task.content %>
+                                    </div>
+                                    <a href="/edit/<%=task._id %>" class="edit"><span class="fas fa-edit"></span></a>
+                                    <a href="/remove/<%=task._id %>" class="remove"><span class="fas fa-times"></span></a>
+                                </li>
+                               <% } %>
+                               <% }) %>
+            </ul>
+        </section>
+    </section>
+    <script src='/server.js'></script>
+</body>
+</html>
